@@ -40,4 +40,7 @@ else
  exit 1
 fi
 
-/usr/sbin/apache2ctl -D FOREGROUND
+# Apache gets grumpy about PID files pre-existing
+rm -f /var/run/apache2.pid
+
+exec apache2 -DFOREGROUND
